@@ -1,0 +1,6 @@
+{
+  "name": "metadata",
+  "compatibility_date": "2026-07-01",
+  "assets": { "directory": "." },
+  "routes": [{ "pattern": "metadata.harrys.monster", "custom_domain": true }]
+}

@@ -1,0 +1,7 @@
+test/
+docs/
+README.md
+package.json
+wrangler.jsonc
+.assetsignore
+.git/

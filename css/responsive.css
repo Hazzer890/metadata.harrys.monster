@@ -1,0 +1,110 @@
+/* ============================================================
+   Responsive + motion preferences
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  /* Mosaic unwinds: heading on top, cards back to one plain column */
+  .projects-layout { grid-template-columns: 1fr; }
+  .projects-layout > .projects-list { display: grid; gap: 26px; }
+  /* :nth-child keeps this at the same specificity as the mosaic spans above,
+     so load order decides — without it the spans leak into the narrow layout. */
+  .projects-layout .project-wrap:nth-child(n) { grid-column: auto; margin-top: 0; }
+  .section > .projects-list > .project-wrap:nth-child(odd)  { margin-right: 0; }
+  .section > .projects-list > .project-wrap:nth-child(even) { margin-left: 0; }
+}
+
+@media (max-width: 900px) {
+  /* Hero: photo + terminal drop below the panel and stack in flow */
+  .hero { min-height: 0; padding-bottom: 0; margin-top: clamp(56px, 9vw, 100px); }
+  .scroll-cue { display: none; } /* hero isn't full-height here, nothing to cue */
+  .hero-panel { width: 100%; top: 0; }
+  .hero-photo {
+    position: static;
+    width: min(100%, 300px);
+    margin: 24px auto 0;
+  }
+  .hero-terminal {
+    position: static;
+    width: min(100%, 520px);
+    margin: 24px 0 -48px auto;
+  }
+  .about-panel { padding: clamp(28px, 5vw, 40px); }
+
+  .projects-rail-note { max-width: none; }
+
+  .explore { grid-template-columns: 1fr; }
+  .explore-card:nth-child(2) { margin-top: 0; }
+
+  .contact-panel { margin-left: 0; }
+}
+
+@media (max-width: 640px) {
+  /* Pill nav collapses to brand + toggle; links drop into a glass sheet */
+  .nav { justify-content: space-between; gap: 8px; }
+  .nav-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 9px;
+    border-radius: 999px;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--ink);
+    transition: transform 0.25s var(--ease), opacity 0.2s;
+  }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px;
+    border-radius: var(--radius);
+    background: var(--glass-fill-strong);
+    border: 1px solid var(--glass-brd);
+    box-shadow: 0 24px 60px -24px var(--shadow-strong);
+  }
+  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .nav-links {
+      -webkit-backdrop-filter: blur(22px) saturate(160%);
+      backdrop-filter: blur(22px) saturate(160%);
+    }
+  }
+  .nav-open .nav-links { display: flex; }
+  .nav-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  .nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .nav-link { display: block; border-radius: 12px; padding: 11px 14px; }
+
+  .hero-terminal { margin-bottom: -32px; }
+  .terminal { font-size: 0.78rem; }
+  .hero-actions .btn { flex: 1 1 auto; }
+}
+
+/* ============================================================
+   Reduced motion: stop canvas (JS side), blobs, tilt, reveals,
+   caret blink and smooth scroll. Content fully visible.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .blob { animation: none !important; }
+  .js .reveal { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .js [data-reveal],
+  .js .fade-in { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .tilt { transform: none !important; }
+  .js .caret { animation: none !important; }
+  .scroll-cue-line::after { animation: none !important; }
+  .glass--hero {
+    backdrop-filter: blur(26px) saturate(180%);
+    -webkit-backdrop-filter: blur(26px) saturate(180%);
+  }
+  * { scroll-behavior: auto !important; }
+}

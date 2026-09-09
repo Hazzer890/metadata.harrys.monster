@@ -1,0 +1,75 @@
+/* ============================================================
+   Design tokens — hybrid liquid-glass system (light only).
+   Terminal chrome + guide code blocks stay dark (dark code on a
+   light page is the readable convention), so they use the fixed
+   terminal/code palette below.
+   ============================================================ */
+:root {
+  /* ---- Theme-independent ---- */
+  --font-body: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --font-heading: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --radius: 22px;
+  --radius-lg: 30px;
+  --maxw: 1120px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --reading-measure: 66ch;
+  --reading-pad: clamp(28px, 4vw, 56px);
+
+  /* Fixed dark chrome — terminal window + guide code blocks + their ink/syntax */
+  --term-bg: rgba(12, 16, 30, 0.85);
+  --code-bg: #0b1020;
+  --code-ink: #e6ebf5;
+  --code-ink-soft: #b9c3da;
+  --code-ink-mute: #8b96b3;
+  --term-green: #7ee787;
+  --term-blue: #6cb6ff;
+  --term-amber: #ffb454;
+
+  /* ---- Light theme (default) ---- */
+  --bg: #f5f7fc;
+  --bg-2: #eef1fa;
+
+  --ink: #111832;
+  --ink-soft: #3f4a68;
+  --ink-mute: #6b7590;
+
+  --glass-fill: rgba(255, 255, 255, 0.34);
+  --glass-fill-strong: rgba(255, 255, 255, 0.55);
+  --glass-brd: rgba(23, 34, 77, 0.12);
+  --glass-rim: rgba(255, 255, 255, 0.9);
+  --glass-rim-2: rgba(255, 255, 255, 0.4);
+
+  --accent: #3b5bdb;
+  --accent-2: #0e7490;
+  --accent-3: #a21caf;
+
+  /* Semantic status (theme-aware — distinct from the fixed terminal palette) */
+  --ok: #15803d;
+  --warn: #b45309;
+  --danger: #dc2626;
+
+  /* Overlay surface tints (single vocabulary for fills + hovers) */
+  --surface-1: rgba(23, 34, 77, 0.03);
+  --surface-2: rgba(23, 34, 77, 0.05);
+  --surface-3: rgba(23, 34, 77, 0.07);
+  --surface-hover: rgba(23, 34, 77, 0.09);
+
+  /* Solid accent button (primary + nav CTA) */
+  --btn-solid: linear-gradient(135deg, #3b5bdb, #5b78e8);
+  --btn-solid-ink: #ffffff;
+
+  /* Drop shadows */
+  --shadow-soft: rgba(30, 41, 90, 0.10);
+  --shadow-strong: rgba(30, 41, 90, 0.16);
+
+  /* Ambient background field */
+  --bg-glow-1: #dbe4ff;
+  --bg-glow-2: #ffe7d4;
+  --blob-1: #6d8bff;
+  --blob-2: #ff9a4d;
+  --blob-3: #5b8bff;
+  --blob-opacity: 0.34;
+}
