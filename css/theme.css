@@ -1,0 +1,159 @@
+/* ============================================================
+   harrys.monster shared theme for the tool subdomains.
+   Flat light version of the main site's halftone retheme (2026-09-21):
+   system fonts, off-white page, white hairline cards, indigo accent,
+   floating pill nav. No photo, no glass, no motion beyond hover.
+   The same file is copied into every tool site; edit them together.
+   ============================================================ */
+
+:root {
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --radius: 16px;
+  --maxw: 1120px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --bg: #f5f7fc;
+  --bg-2: #eef1fa;
+  --ink: #111832;
+  --ink-soft: #3f4a68;
+  --ink-mute: #67718c;
+  --card: #ffffff;
+  --line: rgba(23, 34, 77, 0.12);
+  --accent: #3b5bdb;
+  --ok: #15803d;
+  --warn: #b45309;
+  --danger: #dc2626;
+  --surface-1: rgba(23, 34, 77, 0.03);
+  --surface-2: rgba(23, 34, 77, 0.05);
+  --surface-hover: rgba(23, 34, 77, 0.09);
+  --shadow-strong: rgba(30, 41, 90, 0.16);
+
+  /* Legacy names the app stylesheets still use */
+  --glass-brd: var(--line);
+  --glass-fill-strong: var(--card);
+}
+
+/* ---------- Reset ---------- */
+[hidden] { display: none !important; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { border: none; background: none; cursor: pointer; font: inherit; color: inherit; }
+input, select, textarea { font: inherit; color: inherit; }
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-body);
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; font-weight: 600; }
+p a, .footer a { color: var(--accent); }
+p a:hover, .footer a:hover { text-decoration: underline; }
+
+::selection { background: color-mix(in srgb, var(--accent) 25%, transparent); color: var(--ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+.container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+.app { padding-block: clamp(24px, 5vw, 56px); }
+
+/* ---------- Pill nav ---------- */
+.header {
+  position: sticky;
+  top: 18px;
+  z-index: 50;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 18px 8px 8px;
+  border-radius: 30px;
+  background: var(--card);
+  box-shadow: 0 6px 24px -8px var(--shadow-strong);
+}
+.nav-logo { display: inline-flex; align-items: center; padding: 8px 12px; border-radius: 999px; color: var(--accent); }
+.nav-logo:hover { background: var(--surface-2); }
+.nav-mark { display: block; width: 26px; height: auto; }
+.nav-title { font-family: var(--font-mono); font-size: 0.9rem; color: var(--ink-soft); }
+
+/* ---------- Cards (.glass kept as the class name) ---------- */
+.glass, .card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-primary { color: #fff; background: var(--accent); }
+.btn-primary:hover:not(:disabled) { background: color-mix(in srgb, var(--accent) 85%, #000); }
+.btn-ghost, .btn-outline { color: var(--ink); background: var(--surface-2); border-color: var(--line); }
+.btn-ghost:hover:not(:disabled), .btn-outline:hover:not(:disabled) { background: var(--surface-hover); }
+
+/* ---------- Form fields ---------- */
+input:not([type=checkbox], [type=radio], [type=range], [type=file], [type=color]),
+select,
+textarea {
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+}
+input:focus-visible, select:focus-visible, textarea:focus-visible { outline-offset: 1px; }
+input[type=checkbox], input[type=radio], input[type=range] { accent-color: var(--accent); }
+input[type=file]::file-selector-button {
+  margin-right: 0.8rem; padding: 7px 16px; border-radius: 999px; cursor: pointer;
+  font: inherit; font-size: 0.9rem; color: var(--ink);
+  background: var(--surface-2); border: 1px solid var(--line);
+}
+input[type=file]::file-selector-button:hover { background: var(--surface-hover); }
+
+/* ---------- Skip link ---------- */
+.skip-link {
+  position: fixed; top: 1rem; left: 1rem; z-index: 60;
+  padding: 0.6rem 1rem; border-radius: 10px;
+  background: var(--accent); color: #fff;
+  transform: translateY(-300%);
+}
+.skip-link:focus { transform: none; }
+
+/* ---------- Footer ---------- */
+.footer {
+  max-width: var(--maxw);
+  margin: clamp(64px, 10vw, 110px) auto 40px;
+  padding: 0 24px;
+  text-align: center;
+  color: var(--ink-mute);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+.footer .container { padding: 0; }
+
+@media (max-width: 640px) {
+  .header { top: 10px; padding: 0 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
